@@ -10,10 +10,15 @@
 [Vite Wrap](https://developers-apps-in-toss.toss.im/porting_tutorials/vite_unity.html)했다는 기준으로 생성되었습니다.<br>
 만약 Warp에서 UnityCanvas에서 에러가 생겼다면 [전역 설정](https://techchat-apps-in-toss.toss.im/t/npm-run-build/839/2)해보시길 바랍니다.
 
+⚠️ 주의
+- 토스에 올라간 상태에서만 확인이 가능합니다.
+---
 
-현재 지원하는 기능은 다음과 같습니다.
-- 토스 로그인 [getUserKeyForGame]
-- 리더보드 열기/점수 제출 [openGameCenterLeaderboard,submitGameCenterLeaderBoardScore]
+## 플러그인 적용 프로세스
+1. 유니티에 플러그인 코드 구현
+2. WebGL로 빌드해서 Warp프로젝트에 넣습니다.
+3. JS단에 전역 선언 및 유니티에서 호출할 메서드를 선언합니다. *[위키 참조](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki)
+4. 토스에 ait를 올려서 테스트합니다.
 
 ---
 
