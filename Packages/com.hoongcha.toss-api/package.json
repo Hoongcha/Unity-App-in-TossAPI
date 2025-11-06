@@ -1,0 +1,26 @@
+{
+  "name": "com.hoongcha.toss-api",
+  "displayName": "Hoongcha-TossAPI",
+  "version": "0.1.0",
+  "description": "토스API Unity 플러그인",
+  "author": {
+    "name": "Hoongcha"
+  },
+  "samples": [
+    {
+      "displayName": "TossGetUserKeyForGameExample",
+      "description": "토스 로그인하는 코드 예제입니다.\n로그인이 이미 되어있는 상태면 바로UserKey를 가져옵니다.",
+      "path": "TossGetUserKeyForGameExample~"
+    },
+    {
+      "displayName": "TossOpenLeaderboardExample",
+      "description": "토스 리더보드를 여는 코드 예제입니다.",
+      "path": "TossOpenLeaderboardExample~"
+    },
+    {
+      "displayName": "TossSubmitLeaderBoardScoreExample",
+      "description": "토스 리더보드에 점수를 보내는 코드 예제입니다.",
+      "path": "TossSubmitLeaderBoardScoreExample~"
+    }
+    ]
+} 
