@@ -3,8 +3,8 @@
 유니티 앱인토스 API 플러그인 부분 모음
 
 현재 있는기능
-- 토스 로그인 [getUserKeyForGame]
-- 리더보드 열기/점수 제출 [openGameCenterLeaderboard,submitGameCenterLeaderBoardScore]
+- [토스 로그인](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/토스-로그인) [getUserKeyForGame]
+- [리더보드 열기](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/리더보드(랭킹)-열기)/[점수 제출](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/리더보드에-점수-보내기)[openGameCenterLeaderboard,submitGameCenterLeaderBoardScore]
 
 앱인토스에서 쓰는 API를 유니티에서 호출 하기 위해 만들었습니다.<br>
 [Vite Wrap](https://developers-apps-in-toss.toss.im/porting_tutorials/vite_unity.html)했다는 기준으로 생성되었습니다.<br>
