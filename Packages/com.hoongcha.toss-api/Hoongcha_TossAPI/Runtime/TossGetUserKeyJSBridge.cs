@@ -16,8 +16,10 @@ namespace Hoongcha_TossAPI
     {
         #region GetUserKey
         
+        #if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void RequestUserKey(string gameObjectName, string callbackMethod);
+        #endif
 
         private Action<string> onGetUserKeyReceived;
         private Action<string> onGetUserKeyError;

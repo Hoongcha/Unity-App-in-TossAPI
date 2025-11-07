@@ -13,10 +13,10 @@ namespace Hoongcha_TossAPI
     public class TossLeaderBoardJsBridge : MonoBehaviour
     {
         #region SubmitLeaderBoardScore
-
+        #if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void RequestSubmitLeaderBoardScore(string gameObjectName, string callbackMethod,string scoreString);
-
+        #endif
         private Action<string> onSubmitLeaderBoardSuccess;
         private Action<string> onSubmitLeaderBoardError;
 
@@ -161,9 +161,10 @@ namespace Hoongcha_TossAPI
         #endregion
         
         #region OpenLeaderboard
+        #if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void RequestOpenLeaderboard(string gameObjectName, string callbackMethod);
-
+        #endif
         private Action<string> onOpenSuccess;
         private Action<string> onOpenError;
         
