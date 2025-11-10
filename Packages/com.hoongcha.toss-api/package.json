@@ -9,7 +9,7 @@
   "samples": [
     {
       "displayName": "TossGetUserKeyForGameExample",
-      "description": "토스 로그인하는 코드 예제입니다.\n로그인이 이미 되어있는 상태면 바로UserKey를 가져옵니다.",
+      "description": "토스 로그인하는 코드 예제입니다.\n로그인이 이미 되어있는 상태면 바로 UserKey를 가져옵니다.",
       "path": "TossGetUserKeyForGameExample~"
     },
     {
@@ -21,6 +21,11 @@
       "displayName": "TossSubmitLeaderBoardScoreExample",
       "description": "토스 리더보드에 점수를 보내는 코드 예제입니다.",
       "path": "TossSubmitLeaderBoardScoreExample~"
+    },
+    {
+      "displayName": "TossStorageExample",
+      "description": "토스에 데이터를 저장하는 코드 예제입니다.",
+      "path": "TossStorageExample~"
     }
     ]
 } 
