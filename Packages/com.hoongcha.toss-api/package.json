@@ -1,7 +1,7 @@
 {
   "name": "com.hoongcha.toss-api",
   "displayName": "Hoongcha-TossAPI",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "토스API Unity 플러그인",
   "author": {
     "name": "Hoongcha"
@@ -26,6 +26,11 @@
       "displayName": "TossStorageExample",
       "description": "토스에 데이터를 저장하는 코드 예제입니다.",
       "path": "TossStorageExample~"
+    },
+    {
+      "displayName": "AppStateExample",
+      "description": "토스 웹뷰 로부터 백그라운드,포그라운드로 나갈때 콜백을 받는 코드 예제입니다.",
+      "path": "AppStateExample~"
     }
     ]
 } 

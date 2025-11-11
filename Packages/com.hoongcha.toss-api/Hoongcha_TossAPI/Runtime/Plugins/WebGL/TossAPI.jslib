@@ -295,6 +295,27 @@ mergeInto(LibraryManager.library, {
               message: 'React bridge function not found'
           }));
       }
-  }
+  },
+   AppStateSubscribe: function (gameObjectName, callbackMethod) {
+    // Unity에서 보낸 문자열을 JS 문자열로 변환
+    var unityObjectName = UTF8ToString(gameObjectName);
+    var unityMethodName = UTF8ToString(callbackMethod);
 
-  });
+    // 나중에 React가 호출할 때 이 정보를 써야 하니까 저장해둠
+    Module.unityAppStateTarget = {
+      objectName: unityObjectName,
+      methodName: unityMethodName
+    };
+
+    // React에서 호출할 함수 등록
+    // React가 window.AppStateNotify('background') 이렇게 부르면
+    // Unity로 SendMessage 날아감
+    window.AppStateNotify = function (state) {
+      var target = Module.unityAppStateTarget;
+      if (!target) return; // 구독 안 됐으면 아무 것도 안 함
+
+      var message = JSON.stringify({ state: state });
+      SendMessage(target.objectName, target.methodName, message);
+    };
+  }
+});
