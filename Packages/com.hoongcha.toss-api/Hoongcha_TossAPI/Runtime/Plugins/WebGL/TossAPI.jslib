@@ -296,26 +296,55 @@ mergeInto(LibraryManager.library, {
           }));
       }
   },
-   AppStateSubscribe: function (gameObjectName, callbackMethod) {
-    // Unity에서 보낸 문자열을 JS 문자열로 변환
-    var unityObjectName = UTF8ToString(gameObjectName);
-    var unityMethodName = UTF8ToString(callbackMethod);
+  AppStateSubscribe: function (gameObjectName, callbackMethod) {
+    var goName = UTF8ToString(gameObjectName);
+    var method = UTF8ToString(callbackMethod);
 
-    // 나중에 React가 호출할 때 이 정보를 써야 하니까 저장해둠
-    Module.unityAppStateTarget = {
-      objectName: unityObjectName,
-      methodName: unityMethodName
-    };
+    // 이전 구독 해제
+    if (typeof window.__tossVisUnsub === 'function') {
+      try { window.__tossVisUnsub(); } catch (e) {}
+      window.__tossVisUnsub = null;
+    }
+    
+    function send(state, evt) {
+      var payload = JSON.stringify({
+        state: state, // "visible" | "hidden"
+        eventType: evt, // "visibilitychange" | "pagehide" | "pageshow" | "blur" | "focus" | "init"
+        hidden: state === 'hidden',
+        ts: Date.now()
+      });
+      try { SendMessage(goName, method, payload); } catch (e) {}
+    }
 
-    // React에서 호출할 함수 등록
-    // React가 window.AppStateNotify('background') 이렇게 부르면
-    // Unity로 SendMessage 날아감
-    window.AppStateNotify = function (state) {
-      var target = Module.unityAppStateTarget;
-      if (!target) return; // 구독 안 됐으면 아무 것도 안 함
+    // 캡처 단계로 가장 먼저 잡는다(숨기기 직전에도 최대한 빨리 유니티 호출)
+    var opts = { capture: true, passive: true };
 
-      var message = JSON.stringify({ state: state });
-      SendMessage(target.objectName, target.methodName, message);
+    function onVisibility() { send(document.hidden ? 'hidden' : 'visible', 'visibilitychange'); }
+    function onPageHide()   { send('hidden',  'pagehide'); }
+    function onPageShow()   { send('visible', 'pageshow'); }
+    function onBlur()       { send(document.hidden ? 'hidden' : 'visible', 'blur'); }
+    function onFocus()      { send(document.hidden ? 'hidden' : 'visible', 'focus'); }
+    function onFreeze()     { send('hidden', 'freeze'); }
+    
+    // 이벤트 구독
+    document.addEventListener('visibilitychange', onVisibility, opts);
+    window.addEventListener('pagehide', onPageHide, opts);
+    window.addEventListener('pageshow', onPageShow, opts);
+    window.addEventListener('blur', onBlur, opts);
+    window.addEventListener('focus', onFocus, opts);
+    window.addEventListener('freeze', onFreeze, opts);
+
+    // 초기 1회 상태 통지(필요 시)
+    send(document.hidden ? 'hidden' : 'visible', 'init');
+
+    // 이벤트 구독 해제 함수 정의
+    window.__tossVisUnsub = function () {
+      document.removeEventListener('visibilitychange', onVisibility, opts);
+      window.removeEventListener('pagehide', onPageHide, opts);
+      window.removeEventListener('pageshow', onPageShow, opts);
+      window.removeEventListener('blur', onBlur, opts);
+      window.removeEventListener('focus', onFocus, opts);
+      window.removeEventListener('freeze', onFreeze, opts);
     };
   }
 });
