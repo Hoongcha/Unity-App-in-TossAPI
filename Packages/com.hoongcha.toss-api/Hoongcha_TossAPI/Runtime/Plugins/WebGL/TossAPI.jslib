@@ -139,24 +139,10 @@ mergeInto(LibraryManager.library, {
     if (window.TossStorageSetItem) {
       window.TossStorageSetItem(key,value)
         .then(function(result) {
-          if (!result) {
-            SendMessage(objName, method, JSON.stringify({
-              status: 'error',
-              message: '지원하지 않는 앱 버전이에요.'
-            }));
-            return;
-          }
-          if (result.statusCode === 'SUCCESS') {
             SendMessage(objName, method, JSON.stringify({
               status: 'success',
               message: `${key}에 ${value}를 저장했습니다.`
             }));
-          } else {
-            SendMessage(objName, method, JSON.stringify({
-              status: 'error',
-              message: result.statusCode
-            }));
-          }
         })
         .catch(function(error) {
           SendMessage(objName, method, JSON.stringify({
@@ -180,24 +166,13 @@ mergeInto(LibraryManager.library, {
     if (window.TossStorageGetItem) {
         window.TossStorageGetItem(key)
             .then(function(result) {
-                if (!result) {
-                    SendMessage(objName, method, JSON.stringify({
-                        status: 'error',
-                        message: '지원하지 않는 앱 버전이에요.'
-                    }));
-                    return;
-                }
-                if (result.statusCode === 'SUCCESS') {
-                    SendMessage(objName, method, JSON.stringify({
-                        status: 'success',
-                        message: result.value
-                    }));
-                } else {
-                    SendMessage(objName, method, JSON.stringify({
-                        status: 'error',
-                        message: result.statusCode
-                    }));
-                }
+              if(result == null){
+                 result = '';
+              }
+                SendMessage(objName, method, JSON.stringify({
+                    status: 'success',
+                    message: result
+                }));
             })
             .catch(function(error) {
                 SendMessage(objName, method, JSON.stringify({
@@ -222,24 +197,10 @@ mergeInto(LibraryManager.library, {
       if (window.TossStorageRemoveItem) {
           window.TossStorageRemoveItem(key)
               .then(function(result) {
-                  if (!result) {
-                      SendMessage(objName, method, JSON.stringify({
-                          status: 'error',
-                          message: '지원하지 않는 앱 버전이에요.'
-                      }));
-                      return;
-                  }
-                  if (result.statusCode === 'SUCCESS') {
-                      SendMessage(objName, method, JSON.stringify({
+                  SendMessage(objName, method, JSON.stringify({
                           status: 'success',
                           message: `${key}를 삭제했습니다.`
-                      }));
-                  } else {
-                      SendMessage(objName, method, JSON.stringify({
-                          status: 'error',
-                          message: result.statusCode
-                      }));
-                  }
+                  }));
               })
               .catch(function(error) {
                   SendMessage(objName, method, JSON.stringify({
@@ -263,24 +224,10 @@ mergeInto(LibraryManager.library, {
       if (window.TossStorageAllClearItem) {
           window.TossStorageAllClearItem()
               .then(function(result) {
-                  if (!result) {
-                      SendMessage(objName, method, JSON.stringify({
-                          status: 'error',
-                          message: '지원하지 않는 앱 버전이에요.'
-                      }));
-                      return;
-                  }
-                  if (result.statusCode === 'SUCCESS') {
-                      SendMessage(objName, method, JSON.stringify({
-                          status: 'success',
-                          message: '모든 항목을 삭제했습니다.'
-                      }));
-                  } else {
-                      SendMessage(objName, method, JSON.stringify({
-                          status: 'error',
-                          message: result.statusCode
-                      }));
-                  }
+                  SendMessage(objName, method, JSON.stringify({
+                      status: 'success',
+                      message: '모든 항목을 삭제했습니다.'
+                  }));
               })
               .catch(function(error) {
                   SendMessage(objName, method, JSON.stringify({
