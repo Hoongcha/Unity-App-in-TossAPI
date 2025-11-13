@@ -281,9 +281,6 @@ mergeInto(LibraryManager.library, {
     window.addEventListener('focus', onFocus, opts);
     window.addEventListener('freeze', onFreeze, opts);
 
-    // 초기 1회 상태 통지(필요 시)
-    send(document.hidden ? 'hidden' : 'visible', 'init');
-
     // 이벤트 구독 해제 함수 정의
     window.__tossVisUnsub = function () {
       document.removeEventListener('visibilitychange', onVisibility, opts);
