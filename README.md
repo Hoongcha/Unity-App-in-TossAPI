@@ -6,7 +6,7 @@
 - [토스 로그인](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/토스-로그인) [getUserKeyForGame]
 - [리더보드 열기](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/리더보드(랭킹)-열기)/[점수 제출](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/리더보드에-점수-보내기) [openGameCenterLeaderboard,submitGameCenterLeaderBoardScore]
 - [네이티브 저장소](https://developers-apps-in-toss.toss.im/bedrock/reference/framework/저장소/Storage.html) [getItem,setItem,removeItem,clearItems]
-- 백그라운드,포그라운드 감지 **[참고한 issue](https://techchat-apps-in-toss.toss.im/t/webgl-off-3/474/2)**
+- 백그라운드,포그라운드 감지 **[참고한 issue](https://techchat-apps-in-toss.toss.im/t/webgl-off-3/474/2)** `사운드 끄고 켜기 예제 넣어놓음`
 
 앱인토스에서 쓰는 API를 유니티에서 호출 하기 위해 만들었습니다.<br>
 [Vite Wrap](https://developers-apps-in-toss.toss.im/porting_tutorials/vite_unity.html)했다는 기준으로 생성되었습니다.<br>
@@ -15,6 +15,7 @@
 ⚠️ 주의
 - **토스에 올라간 상태에서만 확인이 가능합니다.**
 - **절대로 같은 JS브릿지 여러개 쓰지 마세요 작동 보장안합니다.**
+- **꼭 샘플을 확인하세요.**
 ---
 
 ## 플러그인 적용 프로세스
