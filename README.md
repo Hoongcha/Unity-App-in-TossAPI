@@ -1,6 +1,10 @@
 # Unity-App-in-TossAPI
 
-유니티 앱인토스 API 플러그인 부분 모음
+유니티 앱인토스 API 플러그인 부분 모음<br>
+
+https://github.com/Hoongcha/UNITY-TOSS-VITE_WARPPER<br>
+을 사용해서 WARPPER 하시면 좀더 손쉽게 사용 가능합니다.<br>
+해당 WARPPER에선 해당 플러그인 기능들이 전부 세팅되어 있습니다.<br>
 
 현재 있는기능.
 - [토스 로그인](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/토스-로그인) [getUserKeyForGame]
