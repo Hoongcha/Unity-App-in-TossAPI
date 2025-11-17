@@ -10,15 +10,14 @@ public class TossShowAppInAdMobExample: MonoBehaviour
     [SerializeField]
     private TMP_Text debugText;
     [SerializeField]
+    private TossAdsConfig tossAdsConfig;
+    [SerializeField]
     private TossAdMobJSBridge tossAdMob;
     
     public void ShowAppInAdMob()
     {
-        // 테스트 id
-        // 전면형 광고 : ait-ad-test-interstitial-id
-        // 리워드 광고 : ait-ad-test-rewarded-id
         tossAdMob.ShowAppsInTossAdMob(
-            "ait-ad-test-interstitial-id",
+            tossAdsConfig.AD_GROUP_ID,
             OnSuccess,OnError );
     }
     private void OnSuccess((AdMobEventType eventType, JSBridgeAdResponse adResponse) adEventCallback)
