@@ -11,6 +11,7 @@ https://github.com/Hoongcha/UNITY-TOSS-VITE_WARPPER<br>
 - [리더보드 열기](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/리더보드(랭킹)-열기)/[점수 제출](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/리더보드에-점수-보내기) [openGameCenterLeaderboard,submitGameCenterLeaderBoardScore]
 - [네이티브 저장소](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/네이티브-저장소-이용하기) [getItem,setItem,removeItem,clearItems]
 - [백그라운드,포그라운드 감지](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/백그라운드-,-foreground-감지) `사운드 끄고 켜기 예제 포함`<br>**[* 참고한 issue](https://techchat-apps-in-toss.toss.im/t/webgl-off-3/474/2)**&nbsp;&nbsp;
+- [인앱 광고](https://github.com/Hoongcha/Unity-App-in-TossAPI/wiki/인앱-광고) [loadAppsInTossAdMob,showAppsInTossAdMob]
 
 앱인토스에서 쓰는 API를 유니티에서 호출 하기 위해 만들었습니다.<br>
 [Vite Wrap](https://developers-apps-in-toss.toss.im/porting_tutorials/vite_unity.html)했다는 기준으로 생성되었습니다.<br>
