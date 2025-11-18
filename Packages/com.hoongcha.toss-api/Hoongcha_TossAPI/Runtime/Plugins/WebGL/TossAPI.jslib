@@ -293,5 +293,115 @@ mergeInto(LibraryManager.library, {
       window.removeEventListener('focus', onFocus, opts);
       window.removeEventListener('freeze', onFreeze, opts);
     };
+  },
+
+  RequestLoadAD: function(gameObjectName, callbackMethod, AD_GROUP_ID) {
+    var objName = UTF8ToString(gameObjectName);
+    var method = UTF8ToString(callbackMethod);
+    var adID = UTF8ToString(AD_GROUP_ID);
+    
+    if (window.TossLoadAD) {
+      try {
+        window.TossLoadAD(adID, function(result) {
+          if (result.type === 'loaded') {
+            SendMessage(objName, method, JSON.stringify({
+              status: 'success',
+              message: '광고 로드 성공'
+            }));
+          }else{
+            SendMessage(objName, method, JSON.stringify({
+              status: 'error',
+              message: result.message
+            }));
+          }
+        });
+      } catch (error) {
+        SendMessage(objName, method, JSON.stringify({
+          status: 'error',
+          message: error.toString()
+        }));
+      }
+    } else {
+      console.error('TossLoadAD 함수가 정의되지 않았습니다.');
+      SendMessage(objName, method, JSON.stringify({
+        status: 'error',
+        message: 'React bridge function not found'
+      }));
+    }
+  },
+  RequesShowAD: function(gameObjectName, callbackMethod, AD_GROUP_ID) {
+    var objName = UTF8ToString(gameObjectName);
+    var method = UTF8ToString(callbackMethod);
+    var adID = UTF8ToString(AD_GROUP_ID);
+    
+    if (window.TossShowAD) {
+      try {
+        window.TossShowAD(adID, function(result) {
+          switch (result.type) {
+            case 'requested':
+              SendMessage(objName, method, JSON.stringify({
+                status: 'requested',
+                message: '광고 보여주기 요청 완료'
+              }));
+              break;
+            case 'clicked':
+              SendMessage(objName, method, JSON.stringify({
+                status: 'clicked',
+                message: '광고 클릭'
+              }));
+              break;
+            case 'dismissed':
+              SendMessage(objName, method, JSON.stringify({
+                status: 'dismissed',
+                message: '광고 닫힘'
+              }));
+              break;
+            case 'impression':
+              SendMessage(objName, method, JSON.stringify({
+                status: 'impression',
+                message: '광고 노출'
+              }));
+              break;
+            case 'userEarnedReward':
+              SendMessage(objName, method, JSON.stringify({
+                status: 'userEarnedReward',
+                unitType: result.data.unitType,
+                unitAmount: result.data.unitAmount,
+                message: '사용자가 광고 시청을 완료했음'
+              }));
+              break;
+            case 'show':
+              SendMessage(objName, method, JSON.stringify({
+                status: 'show',
+                message: '광고 컨텐츠 보여졌음'
+              }));
+              break;
+            case 'failedToShow':
+              SendMessage(objName, method, JSON.stringify({
+                status: 'failedToShow',
+                message: '광고 보여주기 실패'
+              }));
+              break;
+            default:
+              SendMessage(objName, method, JSON.stringify({
+                status: 'error',
+                message: 'status Something Weird'
+              }));
+              break;
+          }
+        });
+      } catch (error) {
+        SendMessage(objName, method, JSON.stringify({
+          status: 'error',
+          message: error.toString()
+        }));
+      }
+    } else {
+      console.error('TossShowAD 함수가 정의되지 않았습니다.');
+      SendMessage(objName, method, JSON.stringify({
+        status: 'error',
+        message: 'React bridge function not found'
+      }));
+    }
   }
 });

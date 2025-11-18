@@ -1,7 +1,7 @@
 {
   "name": "com.hoongcha.toss-api",
   "displayName": "Hoongcha-TossAPI",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "description": "토스API Unity 플러그인",
   "author": {
     "name": "Hoongcha"
@@ -31,6 +31,11 @@
       "displayName": "AppStateExample",
       "description": "토스 웹뷰 로부터 백그라운드,포그라운드로 나갈때 콜백을 받는 코드 예제입니다.\n해당 샘플에는 백그라운드에서 사운드를 끄고 켜는 클래스,프리펩도 포함되어있습니다.",
       "path": "AppStateExample~"
+    },
+    {
+      "displayName": "TossInAppADExample",
+      "description": "토스 광고 관련 코드 예제입니다.",
+      "path": "TossInAppADExample~"
     }
     ]
 } 
